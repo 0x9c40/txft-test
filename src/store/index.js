@@ -3,16 +3,29 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-import someting from "./static/legalentity.json";
+import legalEntities from "./static/legalentity.json";
 
 export default new Vuex.Store({
   state: {
-    someting,
+    legalEntities,
+    selectedLegalEntityID: undefined,
   },
 
   getters: {},
 
-  mutations: {},
+  mutations: {
+    selectLegalEntity(state, ID) {
+      if (ID === state.selectedLegalEntityID) {
+        state.selectedLegalEntityID = undefined;
+      } else {
+        state.selectedLegalEntityID = ID;
+      }
+    },
+  },
 
-  actions: {},
+  actions: {
+    selectLegalEntity({ commit }, ID) {
+      commit("selectLegalEntity", ID);
+    },
+  },
 });

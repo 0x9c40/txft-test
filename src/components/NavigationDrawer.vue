@@ -42,7 +42,8 @@ export default {
 <style lang="scss">
 .navigation-drawer {
   background-color: $color-primary;
-  position: absolute;
+  position: fixed;
+  z-index: 1;
   height: 100%;
   padding-top: 64px;
   width: $navigation-drawer-width;
@@ -51,6 +52,12 @@ export default {
 
   &--opened {
     left: 0px;
+  }
+
+  @media (max-width: 960px) {
+    &--opened {
+      box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.2);
+    }
   }
 }
 </style>

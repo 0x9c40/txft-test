@@ -3,8 +3,13 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import AddContract from "./views/AddContract.vue";
-import Blank from "./components/Blank.vue";
+import AddContract from "./views/AddContract/index.vue";
+import AddContract_1stStep from "./views/AddContract/1stStep.vue";
+import AddContract_2ndStep from "./views/AddContract/2ndStep.vue";
+import AddContract_3rdStep from "./views/AddContract/3rdStep.vue";
+import AddContract_4thStep from "./views/AddContract/4thStep.vue";
+
+import Blank from "./views/Blank.vue";
 
 const routes = [
   {
@@ -14,31 +19,19 @@ const routes = [
     children: [
       {
         path: "1st-step",
-        component: () =>
-          import(
-            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/1stStep.vue"
-          ),
+        component: AddContract_1stStep,
       },
       {
         path: "2nd-step",
-        component: () =>
-          import(
-            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/2ndStep.vue"
-          ),
+        component: AddContract_2ndStep,
       },
       {
         path: "3rd-step",
-        component: () =>
-          import(
-            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/3rdStep.vue"
-          ),
+        component: AddContract_3rdStep,
       },
       {
         path: "4th-step",
-        component: () =>
-          import(
-            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/4thStep.vue"
-          ),
+        component: AddContract_4thStep,
       },
     ],
   },

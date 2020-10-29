@@ -49,6 +49,9 @@ export default {
 
 <style lang="scss">
 .header {
+  position: fixed;
+  width: 100%;
+  z-index: 2;
   color: white;
   background-color: $color-primary;
   height: $header-height;
@@ -60,7 +63,7 @@ export default {
   display: flex;
   padding-left: $navigation-drawer-width + 32px;
 
-  @media (max-width: 640px) {
+  @media (max-width: 960px) {
     padding-left: 10px;
   }
 }
@@ -88,7 +91,7 @@ export default {
   margin-right: 16px;
   display: none;
 
-  @media (max-width: 640px) {
+  @media (max-width: 960px) {
     display: block;
   }
 }

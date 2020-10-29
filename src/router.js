@@ -3,26 +3,43 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+import WizzardView from "./components/Wizzard/View.vue";
+
 const routes = [
   {
-    path: "/",
-    redirect: "/wizzard/step-1",
-  },
-  {
-    path: "/wizzard/step-1",
-    name: "WizzardStep1",
-    component: () =>
-      import(
-        /* webpackChunkName: "contacts-list" */ "./views/wizzard/Step_1.vue"
-      ),
-  },
-  {
-    path: "/wizzard/step-2",
-    name: "WizzardStep2",
-    component: () =>
-      import(
-        /* webpackChunkName: "edit-contact" */ "./views/wizzard/Step_2.vue"
-      ),
+    path: "/wizzard",
+    component: WizzardView,
+    redirect: "/wizzard/1st-step",
+    children: [
+      {
+        path: "1st-step",
+        component: () =>
+          import(
+            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/1stStep.vue"
+          ),
+      },
+      {
+        path: "2nd-step",
+        component: () =>
+          import(
+            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/2ndStep.vue"
+          ),
+      },
+      {
+        path: "3rd-step",
+        component: () =>
+          import(
+            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/3rdStep.vue"
+          ),
+      },
+      {
+        path: "4th-step",
+        component: () =>
+          import(
+            /* webpackChunkName: "contacts-list" */ "./components/Wizzard/4thStep.vue"
+          ),
+      },
+    ],
   },
 ];
 

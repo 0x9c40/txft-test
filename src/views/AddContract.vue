@@ -1,13 +1,10 @@
 <template>
-  <div>
-    wizard
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
 export default {
-  name: "WizzardView",
+  name: "AddContract",
 };
 </script>
 

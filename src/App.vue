@@ -60,10 +60,11 @@ export default {
 }
 
 .main-container {
-  padding-left: $navigation-drawer-width;
+  padding-left: $navigation-drawer-width + 32px;
+  padding-top: 32px;
 
   @media (max-width: 640px) {
-    padding-left: 0;
+    padding: 24px;
   }
 }
 </style>

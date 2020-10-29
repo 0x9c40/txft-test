@@ -3,8 +3,12 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+import someting from "./static/legalentity.json";
+
 export default new Vuex.Store({
-  state: {},
+  state: {
+    someting,
+  },
 
   getters: {},
 

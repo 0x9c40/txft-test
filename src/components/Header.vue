@@ -58,10 +58,10 @@ export default {
 
 .header-container {
   display: flex;
-  margin-left: $navigation-drawer-width;
+  padding-left: $navigation-drawer-width + 32px;
 
   @media (max-width: 640px) {
-    margin-left: 10px;
+    padding-left: 10px;
   }
 }
 

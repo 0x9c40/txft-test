@@ -3,13 +3,14 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import WizzardView from "./components/Wizzard/View.vue";
+import AddContract from "./views/AddContract.vue";
+import Blank from "./components/Blank.vue";
 
 const routes = [
   {
-    path: "/wizzard",
-    component: WizzardView,
-    redirect: "/wizzard/1st-step",
+    path: "/add-contract",
+    component: AddContract,
+    redirect: "/add-contract/1st-step",
     children: [
       {
         path: "1st-step",
@@ -40,6 +41,14 @@ const routes = [
           ),
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    component: Blank,
+  },
+  {
+    path: "/open-tasks",
+    component: Blank,
   },
 ];
 

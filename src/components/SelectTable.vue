@@ -1,10 +1,13 @@
 <template>
   <table class="select-table">
     <tr class="select-table-head">
-      <th class="select-table-head__field">Legal Entity</th>
-      <th class="select-table-head__field">Street</th>
-      <th class="select-table-head__field">City</th>
-      <th class="select-table-head__field">Country</th>
+      <th
+        class="select-table-field"
+        v-for="column in columns"
+        :key="column.name"
+      >
+        {{ column.name }}
+      </th>
     </tr>
     <tr
       class="select-table-row"
@@ -16,21 +19,18 @@
           selectedLegalEntityID === entry.legalEntityID,
       }"
     >
-      <td class="select-table-row__field">
-        <span class="select-table-row__field--mobile">Legal Entity:</span>
-        {{ entry.legalEntityName }}
-      </td>
-      <td class="select-table-row__field">
-        <span class="select-table-row__field--mobile">Street:</span>
-        {{ entry.address1 + " " + entry.address2 }}
-      </td>
-      <td class="select-table-row__field">
-        <span class="select-table-row__field--mobile">City:</span>
-        {{ entry.city }}
-      </td>
-      <td class="select-table-row__field">
-        <span class="select-table-row__field--mobile">Country:</span>
-        {{ entry.country }}
+      <td
+        class="select-table-row__field select-table-field"
+        v-for="column in columns"
+        :key="column.name"
+      >
+        <span class="select-table-row__field--on-mobile"
+          >{{ column.name }}:</span
+        >
+        <span v-if="column.key">{{ entry[column.key] }}</span>
+        <span v-else-if="column.keys">{{
+          concatenate(column.keys, entry)
+        }}</span>
       </td>
     </tr>
   </table>
@@ -46,6 +46,13 @@ export default {
       type: Array,
       default: () => [],
     },
+    firstColumn: {
+      type: Object,
+      default: () => ({
+        name: "firstColumnName",
+      }),
+    },
+    columns: Array,
   },
 
   computed: {
@@ -54,6 +61,13 @@ export default {
 
   methods: {
     ...mapActions(["selectLegalEntity"]),
+    concatenate(keys, data) {
+      return keys
+        .reduce(function concat(acc, cur) {
+          return acc + " " + data[cur];
+        }, "")
+        .trim();
+    },
   },
 };
 </script>
@@ -67,81 +81,59 @@ export default {
   border-top: 1px solid #eeeeee;
 }
 
-.select-table-head {
-  background-color: $color-secondary;
-  color: white;
-  height: 36px;
-  font-size: 12px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  text-align: left;
-  padding: 0px 10px 0px 48px;
-
-  &__field {
-    &:nth-child(1) {
-      flex: 1.5;
-    }
-    &:nth-child(2) {
-      flex: 2;
-    }
-    &:nth-child(3) {
-      flex: 1;
-    }
-    &:nth-child(4) {
-      flex: 1;
-    }
+.select-table-field {
+  &:nth-child(1) {
+    flex: 1.5;
   }
-
-  @media (max-width: 600px) {
-    display: none;
+  &:nth-child(2) {
+    flex: 2;
+  }
+  &:nth-child(3) {
+    flex: 1;
+  }
+  &:nth-child(4) {
+    flex: 1;
   }
 }
 
-.select-table-row {
+@mixin table-field {
   height: 36px;
   font-size: 12px;
   display: flex;
   align-items: center;
   width: 100%;
+  padding: 0px 10px 0px 48px;
+}
+
+.select-table-head {
+  @include table-field;
+  background-color: $color-secondary;
+  color: white;
+  text-align: left;
+}
+
+.select-table-row {
+  @include table-field;
   border: 1px solid #eeeeee;
   border-top: none;
   position: relative;
   cursor: pointer;
-  padding: 0px 10px 0px 48px;
 
   &:nth-child(2n + 1):not(&--active) {
     background-color: #f9f9f9;
   }
 
   &__field {
-    &:nth-child(1) {
-      flex: 1.5;
-    }
-    &:nth-child(2) {
-      flex: 2;
-    }
-    &:nth-child(3) {
-      flex: 1;
-    }
-    &:nth-child(4) {
-      flex: 1;
-    }
-
-    &--mobile {
+    &--on-mobile {
       display: none;
       font-weight: bold;
-
-      @media (max-width: 600px) {
-        display: inline;
-        width: 100px;
-      }
     }
   }
 
   &--active {
     color: white;
     background-color: $color-cool;
+
     &:before {
       content: "";
       width: 12px;
@@ -154,11 +146,16 @@ export default {
       background-image: url("@/assets/icons/correct-symbol.svg");
     }
   }
+}
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
+  .select-table-head {
+    display: none;
+  }
+
+  .select-table-row {
     flex-direction: column;
     height: unset;
-    text-align: left;
     align-items: flex-start;
     padding: 20px;
 
@@ -166,15 +163,14 @@ export default {
       padding-bottom: 5px;
       display: flex;
 
-      &--mobile {
+      &--on-mobile {
+        display: inline;
         min-width: 100px;
       }
     }
 
-    &--active {
-      &:before {
-        background: none;
-      }
+    &--active:before {
+      background: none;
     }
   }
 }

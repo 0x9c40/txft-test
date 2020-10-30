@@ -1,7 +1,7 @@
 <template>
   <div class="step-1">
     <h1>1: Select Legal Entity</h1>
-    <SelectTable :entries="legalEntities" />
+    <SelectTable :entries="legalEntities" :columns="columnsSchema" />
     <div class="links">
       <router-link to="2nd-step" v-slot="{ navigate, href }">
         <a
@@ -26,6 +26,29 @@ export default {
 
   components: {
     SelectTable,
+  },
+
+  data() {
+    return {
+      columnsSchema: [
+        {
+          name: "Legal Entity",
+          key: "legalEntityName",
+        },
+        {
+          name: "Street",
+          keys: ["address1", "address2"],
+        },
+        {
+          name: "City",
+          key: "city",
+        },
+        {
+          name: "Country",
+          key: "country",
+        },
+      ],
+    };
   },
 
   computed: {

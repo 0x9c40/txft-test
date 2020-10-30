@@ -13,8 +13,6 @@ export default new Vuex.Store({
     pharmacies,
   },
 
-  getters: {},
-
   mutations: {
     selectLegalEntity(state, ID) {
       if (ID === state.selectedLegalEntityID) {

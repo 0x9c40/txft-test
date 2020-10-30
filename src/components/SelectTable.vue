@@ -62,7 +62,6 @@ export default {
 .select-table {
   display: block;
   width: 100%;
-  margin-bottom: 48px;
   color: $text-color-grey;
   border-spacing: 0;
   border-top: 1px solid #eeeeee;

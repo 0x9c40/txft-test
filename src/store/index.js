@@ -4,11 +4,13 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 import legalEntities from "./static/legalentity.json";
+import pharmacies from "./static/pharmacy.json";
 
 export default new Vuex.Store({
   state: {
     legalEntities,
     selectedLegalEntityID: undefined,
+    pharmacies,
   },
 
   getters: {},

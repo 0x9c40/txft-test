@@ -1,9 +1,18 @@
 <template>
-  <div>Третий шаг</div>
+  <div class="step-3">
+    <h1>3: Enter Contract Terms</h1>
+    <ContractTermsForm />
+  </div>
 </template>
 
 <script>
-export default {};
+import ContractTermsForm from "../../components/ContractTermsForm.vue";
+
+export default {
+  components: {
+    ContractTermsForm,
+  },
+};
 </script>
 
 <style>

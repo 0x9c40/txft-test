@@ -6,10 +6,12 @@ Vue.use(Vuex);
 import legalEntities from "./static/legalentity.json";
 import pharmacies from "./static/pharmacy.json";
 
+import { ContractTermsForm } from "./modules/ContractTermsForm";
+
 export default new Vuex.Store({
   state: {
     legalEntities,
-    selectedLegalEntityID: undefined,
+    selectedLegalEntityID: 1,
     pharmacies,
     selectedPharmaciesIDs: [],
   },
@@ -51,5 +53,9 @@ export default new Vuex.Store({
     selectPharmacy({ commit }, ID) {
       commit("selectPharmacy", ID);
     },
+  },
+
+  modules: {
+    ContractTermsForm,
   },
 });

@@ -24,7 +24,7 @@
           :class="{
             'next-step-button--locked': selectedLegalEntityID === undefined,
           }"
-          @click="goToStep2(navigate, href)"
+          @click="goToNextStep(navigate, href)"
         >
           Select Pharmacies
         </a>
@@ -78,17 +78,9 @@ export default {
   methods: {
     ...mapActions(["selectLegalEntity"]),
 
-    goToStep2(navigate, href) {
+    goToNextStep(navigate, href) {
       // .next-step-button--locked {pointer-events: none;}
       navigate(href);
-    },
-
-    concatenate(keys, data) {
-      return keys
-        .reduce(function concat(acc, cur) {
-          return acc + " " + data[cur];
-        }, "")
-        .trim();
     },
   },
 };
@@ -100,19 +92,29 @@ h1 {
   color: $text-color-black;
 }
 
-.next-step-button {
-  background-color: $color-primary-tone;
-  color: white;
+@mixin step-button {
   border-radius: 4px;
   padding: 8px 24px;
   font-weight: bold;
   font-size: 12px;
+  color: white;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.next-step-button {
+  @include step-button;
+  background-color: $color-primary-tone;
 
   &--locked {
     pointer-events: none;
     opacity: 0.3;
   }
+}
+
+.prev-step-button {
+  @include step-button;
+  background-color: $color-grey;
 }
 
 .step-1 {

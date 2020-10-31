@@ -1,5 +1,5 @@
 <template>
-  <div class="step-1">
+  <div class="step-2">
     <h1>2: Select Pharmacies</h1>
     <div class="subtitle">for HERE</div>
     <SelectTable :columns="columnsSchema">
@@ -18,18 +18,20 @@
         />
       </SelectTableRow>
     </SelectTable>
-    <!-- <div class="links">
-      <router-link to="2nd-step" v-slot="{ navigate, href }">
+    <div class="links links--step2">
+      <router-link class="prev-step-button" to="1st-step">Back</router-link>
+      <router-link v-slot="{ navigate, href }" to="3rd-step">
         <a
           class="next-step-button"
           :class="{
-            'next-step-button--locked': selectedLegalEntityID === undefined,
+            'next-step-button--locked': selectedPharmaciesIDs.length === 0,
           }"
-          @click="goToStep2(navigate, href)"
-          >Select Pharmacies</a
+          @click="goToNextStep(navigate, href)"
         >
+          Enter Contract Terms
+        </a>
       </router-link>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -79,16 +81,18 @@ export default {
   methods: {
     ...mapActions(["selectPharmacy"]),
 
-    concatenate(keys, data) {
-      return keys
-        .reduce(function concat(acc, cur) {
-          return acc + " " + data[cur];
-        }, "")
-        .trim();
+    goToNextStep(navigate, href) {
+      // .next-step-button--locked {pointer-events: none;}
+      navigate(href);
     },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+.links {
+  &--step2 {
+    justify-content: space-between;
+  }
+}
 </style>

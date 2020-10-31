@@ -2,9 +2,9 @@
   <table class="select-table">
     <tr class="select-table-head">
       <th
-        class="select-table-cell"
         v-for="column in columns"
         :key="column.name"
+        class="select-table-cell"
       >
         {{ column.name }}
       </th>

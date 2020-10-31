@@ -1,9 +1,7 @@
 <template>
   <td class="select-table-row__cell select-table-cell">
-    <span class="select-table-row__cell--on-mobile"> {{ column.name }}: </span>
-
-    <span v-if="column.key">{{ entry[column.key] }}</span>
-    <span v-else-if="column.keys">
+    <span class="select-table-row__cell--on-mobile">{{ column.name }}:</span>
+    <span>
       {{ concatenate(column.keys, entry) }}
     </span>
   </td>

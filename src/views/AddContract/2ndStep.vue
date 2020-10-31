@@ -53,7 +53,7 @@ export default {
       columnsSchema: [
         {
           name: "Pharmacy",
-          key: "pharmaName",
+          keys: ["pharmaName"],
         },
         {
           name: "Street",
@@ -61,11 +61,11 @@ export default {
         },
         {
           name: "City",
-          key: "city",
+          keys: ["city"],
         },
         {
           name: "Country",
-          key: "country",
+          keys: ["country"],
         },
       ],
     };

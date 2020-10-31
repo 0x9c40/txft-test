@@ -1,31 +1,51 @@
 <template>
   <div class="step-1">
     <h1>1: Select Legal Entity</h1>
-    <SelectTable :entries="legalEntities" :columns="columnsSchema" />
+    <SelectTable :columns="columnsSchema">
+      <SelectTableRow
+        v-for="entry in legalEntities"
+        :key="entry.name"
+        :entry="entry"
+        :active="selectedLegalEntityID === entry.legalEntityID"
+        @click.native="selectLegalEntity(entry.legalEntityID)"
+      >
+        <SelectTableCell
+          v-for="column in columnsSchema"
+          :key="column.name"
+          :entry="entry"
+          :column="column"
+        />
+      </SelectTableRow>
+    </SelectTable>
     <div class="links">
-      <router-link to="2nd-step" v-slot="{ navigate, href }">
+      <router-link v-slot="{ navigate, href }" to="2nd-step">
         <a
           class="next-step-button"
           :class="{
             'next-step-button--locked': selectedLegalEntityID === undefined,
           }"
           @click="goToStep2(navigate, href)"
-          >Select Pharmacies</a
         >
+          Select Pharmacies
+        </a>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import SelectTable from "../../components/SelectTable.vue";
+import { mapState, mapActions } from "vuex";
+import SelectTable from "../../components/SelectTable/SelectTable.vue";
+import SelectTableRow from "../../components/SelectTable/Row.vue";
+import SelectTableCell from "../../components/SelectTable/Cell.vue";
 
 export default {
   name: "Step1",
 
   components: {
     SelectTable,
+    SelectTableRow,
+    SelectTableCell,
   },
 
   data() {
@@ -56,9 +76,19 @@ export default {
   },
 
   methods: {
+    ...mapActions(["selectLegalEntity"]),
+
     goToStep2(navigate, href) {
       // .next-step-button--locked {pointer-events: none;}
       navigate(href);
+    },
+
+    concatenate(keys, data) {
+      return keys
+        .reduce(function concat(acc, cur) {
+          return acc + " " + data[cur];
+        }, "")
+        .trim();
     },
   },
 };

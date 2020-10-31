@@ -2,71 +2,25 @@
   <table class="select-table">
     <tr class="select-table-head">
       <th
-        class="select-table-field"
+        class="select-table-cell"
         v-for="column in columns"
         :key="column.name"
       >
         {{ column.name }}
       </th>
     </tr>
-    <tr
-      class="select-table-row"
-      v-for="entry in entries"
-      :key="entry.legalEntityID"
-      @click="selectLegalEntity(entry.legalEntityID)"
-      :class="{
-        'select-table-row--active':
-          selectedLegalEntityID === entry.legalEntityID,
-      }"
-    >
-      <td
-        class="select-table-row__field select-table-field"
-        v-for="column in columns"
-        :key="column.name"
-      >
-        <span class="select-table-row__field--on-mobile"
-          >{{ column.name }}:</span
-        >
-        <span v-if="column.key">{{ entry[column.key] }}</span>
-        <span v-else-if="column.keys">{{
-          concatenate(column.keys, entry)
-        }}</span>
-      </td>
-    </tr>
+    <slot></slot>
   </table>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
 export default {
   name: "SelectTable",
 
   props: {
-    entries: {
+    columns: {
       type: Array,
       default: () => [],
-    },
-    firstColumn: {
-      type: Object,
-      default: () => ({
-        name: "firstColumnName",
-      }),
-    },
-    columns: Array,
-  },
-
-  computed: {
-    ...mapState(["selectedLegalEntityID"]),
-  },
-
-  methods: {
-    ...mapActions(["selectLegalEntity"]),
-    concatenate(keys, data) {
-      return keys
-        .reduce(function concat(acc, cur) {
-          return acc + " " + data[cur];
-        }, "")
-        .trim();
     },
   },
 };
@@ -81,7 +35,7 @@ export default {
   border-top: 1px solid #eeeeee;
 }
 
-.select-table-field {
+.select-table-cell {
   &:nth-child(1) {
     flex: 1.5;
   }
@@ -96,7 +50,7 @@ export default {
   }
 }
 
-@mixin table-field {
+@mixin table-cell {
   height: 36px;
   font-size: 12px;
   display: flex;
@@ -106,14 +60,14 @@ export default {
 }
 
 .select-table-head {
-  @include table-field;
+  @include table-cell;
   background-color: $color-secondary;
   color: white;
   text-align: left;
 }
 
 .select-table-row {
-  @include table-field;
+  @include table-cell;
   border: 1px solid #eeeeee;
   border-top: none;
   position: relative;
@@ -123,7 +77,7 @@ export default {
     background-color: #f9f9f9;
   }
 
-  &__field {
+  &__cell {
     &--on-mobile {
       display: none;
       font-weight: bold;
@@ -159,7 +113,7 @@ export default {
     align-items: flex-start;
     padding: 20px;
 
-    &__field {
+    &__cell {
       padding-bottom: 5px;
       display: flex;
 

@@ -1,9 +1,13 @@
 <template>
-  <div class="select">
+  <div
+    class="select"
+    tabindex="0"
+    @click="toggleOptions"
+    @keyup.enter="toggleOptions"
+  >
     <div
       class="select__preview"
       :class="{ 'select__preview--active': optionsOpened }"
-      @click="toggleOptions"
     >
       {{ selectedOption }}
     </div>
@@ -14,7 +18,9 @@
           :key="option"
           class="select__option"
           :class="{ 'select__option--active': option === selectedOption }"
+          tabindex="0"
           @click="select(option)"
+          @keyup.enter.stop="select(option)"
         >
           {{ option }}
         </div>
@@ -63,7 +69,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 12px;
+    padding-left: 8px;
 
     &:after {
       content: "🢓";
@@ -103,7 +109,7 @@ export default {
   }
 
   &__option {
-    padding-left: 12px;
+    padding-left: 8px;
     height: 24px;
     display: flex;
     align-items: center;

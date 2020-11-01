@@ -101,10 +101,4 @@ export default {
   font-size: 14px;
   font-weight: normal;
 }
-
-.links {
-  &--step2 {
-    justify-content: space-between;
-  }
-}
 </style>

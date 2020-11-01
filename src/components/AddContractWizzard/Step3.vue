@@ -90,7 +90,15 @@ export default {
     ...mapMutations(["saveAllData"]),
 
     goToNextStep(navigate, href) {
-      this.saveAllData(this.$data);
+      const step3DataInTableFormat = [
+        ["Contract Type", this.selectedContractType],
+        ["Service Agreement #", this.serviceAgreement],
+        ["Contract Start Date", this.contractStartDate],
+        ["Contract End Date", this.contractEndDate],
+        ["Location", this.location],
+        ["Contractor Name", this.contractorName],
+      ];
+      this.saveAllData(step3DataInTableFormat);
       // .next-step-button--locked {pointer-events: none;}
       navigate(href);
     },

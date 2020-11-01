@@ -17,10 +17,7 @@
     />
 
     <h2>Contract Terms</h2>
-    <ContractTermsResultsTable
-      :contract-terms="contractTerms"
-      class="data-table"
-    />
+    <SimpleTable :table-data="step3Data" class="data-table" />
 
     <router-link class="prev-step-button" to="step3">Back</router-link>
   </div>
@@ -29,14 +26,14 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import DataTable from "../SelectTable/DataTable.vue";
-import ContractTermsResultsTable from "../ContractTermsResultsTable.vue";
+import SimpleTable from "../SimpleTable.vue";
 
 export default {
   name: "Step4",
 
   components: {
     DataTable,
-    ContractTermsResultsTable,
+    SimpleTable,
   },
 
   data() {
@@ -83,7 +80,7 @@ export default {
 
   computed: {
     ...mapState({
-      contractTerms: (state) => state.ContractTermsForm.step3data,
+      step3Data: (state) => state.ContractTermsForm.step3Data,
     }),
 
     ...mapGetters(["selectedLegalEntity", "selectedPharmacies"]),

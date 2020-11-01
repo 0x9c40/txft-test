@@ -43,6 +43,18 @@ export default new Vuex.Store({
         return pharmacy.legalEntityID === state.selectedLegalEntityID;
       });
     },
+
+    selectedLegalEntity(state) {
+      return state.legalEntities.filter(function matchID(legalEntity) {
+        return legalEntity.legalEntityID === state.selectedLegalEntityID;
+      });
+    },
+
+    selectedPharmacies(state) {
+      return state.pharmacies.filter(function matchID(pharmacy) {
+        return state.selectedPharmaciesIDs.includes(pharmacy.pharmaID);
+      });
+    },
   },
 
   actions: {

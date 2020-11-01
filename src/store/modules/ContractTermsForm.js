@@ -1,11 +1,11 @@
 export const ContractTermsForm = {
   state: {
-    step4data: {},
+    step3data: {},
   },
 
   mutations: {
     saveAllData(state, data) {
-      state.step4data = data;
+      state.step3data = data;
     },
   },
 };

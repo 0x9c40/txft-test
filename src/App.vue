@@ -1,23 +1,23 @@
 <template>
   <div id="app">
     <Header
-      :navigationDrawerOpened="navigationDrawerOpened"
+      :navigation-drawer-opened="navigationDrawerOpened"
       @toggle="toggleNavigationDrawer"
     />
+
     <div class="main">
-      <NavigationDrawer :isOpened="navigationDrawerOpened" />
-      <div class="main-container">
-        <keep-alive>
-          <router-view />
-        </keep-alive>
-      </div>
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </div>
+
+    <NavigationDrawer :is-opened="navigationDrawerOpened" />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header.vue";
-import NavigationDrawer from "./components/NavigationDrawer.vue";
+import Header from "./components/layout/Header.vue";
+import NavigationDrawer from "./components/layout/NavigationDrawer.vue";
 
 export default {
   name: "App",
@@ -46,27 +46,30 @@ export default {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
   font-family: sans-serif;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  margin-bottom: 8px;
 }
 
 .main {
   position: relative;
-  height: calc(100vh - #{$header-height});
   display: flex;
-}
-
-.main-sidebar {
-  background-color: $color-primary;
-}
-
-.main-container {
-  padding-left: $navigation-drawer-width + 32px;
-  padding-top: $header-height + 32px;
-  padding-right: 24px;
+  padding-top: $header-height;
+  padding-left: $navigation-drawer-width;
   width: 100%;
 
   @media (max-width: 960px) {
-    padding-left: 24px;
+    padding-left: 0;
   }
 }
 </style>

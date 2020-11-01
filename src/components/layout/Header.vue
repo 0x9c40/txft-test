@@ -51,7 +51,7 @@ export default {
 .header {
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: 1;
   color: white;
   background-color: $color-primary;
   height: $header-height;
@@ -71,9 +71,8 @@ export default {
 .header-item {
   display: flex;
   align-items: center;
-  font-size: 12px;
   font-weight: bold;
-  margin-right: 64px;
+  margin-right: 48px;
 
   &__icon {
     width: 12px;

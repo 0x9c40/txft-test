@@ -5,17 +5,17 @@
   >
     <DrawerOption
       to="/dashboard"
-      :imgSrc="require('@/assets/icons/home.svg')"
+      :img-src="require('@/assets/icons/home.svg')"
       title="Dashboard"
     />
     <DrawerOption
       to="/add-contract"
-      :imgSrc="require('@/assets/icons/copy-document.svg')"
+      :img-src="require('@/assets/icons/copy-document.svg')"
       title="Add Contract"
     />
     <DrawerOption
       to="/open-tasks"
-      :imgSrc="require('@/assets/icons/check.svg')"
+      :img-src="require('@/assets/icons/check.svg')"
       title="Open Tasks"
     />
   </div>
@@ -43,9 +43,9 @@ export default {
 .navigation-drawer {
   background-color: $color-primary;
   position: fixed;
-  z-index: 1;
+  top: 0;
   height: 100%;
-  padding-top: 64px;
+  padding-top: $header-height + 40px;
   width: $navigation-drawer-width;
   left: -$navigation-drawer-width;
   transition: left 0.25s;

@@ -51,8 +51,7 @@ export default {
 }
 
 @mixin table-cell {
-  height: 36px;
-  font-size: 12px;
+  height: 32px;
   display: flex;
   align-items: center;
   width: 100%;

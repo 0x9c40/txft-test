@@ -48,8 +48,8 @@
     </form>
 
     <div class="links links--step2">
-      <router-link class="prev-step-button" to="2nd-step">Back</router-link>
-      <router-link v-slot="{ navigate, href }" to="4th-step">
+      <router-link class="prev-step-button" to="step2">Back</router-link>
+      <router-link v-slot="{ navigate, href }" to="step4">
         <a class="next-step-button" @click="goToNextStep(navigate, href)">
           View Results
         </a>
@@ -60,8 +60,8 @@
 
 <script>
 import { mapMutations } from "vuex";
-import CTFormSelect from "../../components/ContractTermsForm/Select.vue";
-import FormGroup from "../../components/ContractTermsForm/FormGroup.vue";
+import CTFormSelect from "../ContractTermsForm/Select.vue";
+import FormGroup from "../ContractTermsForm/FormGroup.vue";
 
 export default {
   components: {

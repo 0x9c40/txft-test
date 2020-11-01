@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: "CTFromSelect",
+  name: "Select",
 
   props: {
     selected: {

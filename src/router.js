@@ -3,35 +3,35 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
-import AddContract from "./views/AddContract/index.vue";
-import AddContract_1stStep from "./views/AddContract/1stStep.vue";
-import AddContract_2ndStep from "./views/AddContract/2ndStep.vue";
-import AddContract_3rdStep from "./views/AddContract/3rdStep.vue";
-import AddContract_4thStep from "./views/AddContract/4thStep.vue";
+import AddContractView from "./views/AddContract.vue";
+import ACWStep1 from "./components/AddContractWizzard/Step1.vue";
+import ACWStep2 from "./components/AddContractWizzard/Step2.vue";
+import ACWStep3 from "./components/AddContractWizzard/Step3.vue";
+import ACWStep4 from "./components/AddContractWizzard/Step4.vue";
 
 import Blank from "./views/Blank.vue";
 
 const routes = [
   {
     path: "/add-contract",
-    component: AddContract,
-    redirect: "/add-contract/1st-step",
+    component: AddContractView,
+    redirect: "/add-contract/step1",
     children: [
       {
-        path: "1st-step",
-        component: AddContract_1stStep,
+        path: "step1",
+        component: ACWStep1,
       },
       {
-        path: "2nd-step",
-        component: AddContract_2ndStep,
+        path: "step2",
+        component: ACWStep2,
       },
       {
-        path: "3rd-step",
-        component: AddContract_3rdStep,
+        path: "step3",
+        component: ACWStep3,
       },
       {
-        path: "4th-step",
-        component: AddContract_4thStep,
+        path: "step4",
+        component: ACWStep4,
       },
     ],
   },

@@ -21,8 +21,8 @@
     </SelectTable>
 
     <div class="links links--step2">
-      <router-link class="prev-step-button" to="1st-step">Back</router-link>
-      <router-link v-slot="{ navigate, href }" to="3rd-step">
+      <router-link class="prev-step-button" to="step1">Back</router-link>
+      <router-link v-slot="{ navigate, href }" to="step3">
         <a
           class="next-step-button"
           :class="{
@@ -39,9 +39,9 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
-import SelectTable from "../../components/SelectTable/SelectTable.vue";
-import SelectTableRow from "../../components/SelectTable/Row.vue";
-import SelectTableCell from "../../components/SelectTable/Cell.vue";
+import SelectTable from "../SelectTable/SelectTable.vue";
+import SelectTableRow from "../SelectTable/Row.vue";
+import SelectTableCell from "../SelectTable/Cell.vue";
 
 export default {
   name: "Step2",

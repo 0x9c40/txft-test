@@ -37,18 +37,17 @@ export default {
   flex-direction: column;
   align-items: center;
   color: white;
-  font-size: 12px;
   font-weight: bold;
   text-decoration: none;
 
   &__icon {
-    width: 32px;
+    width: 28px;
     margin-bottom: 10px;
     filter: invert(1);
   }
 
   &--active {
-    background-color: #fff;
+    background-color: white;
     color: $text-color-grey;
   }
 

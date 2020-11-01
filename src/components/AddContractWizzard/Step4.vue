@@ -5,7 +5,7 @@
     <h2>Legal Entity</h2>
     <DataTable
       :columns="legalEntityColumnsSchema"
-      :entries="selectedLegalEntity"
+      :entries="[selectedLegalEntity]"
       class="data-table"
     />
 
@@ -17,7 +17,12 @@
     />
 
     <h2>Contract Terms</h2>
-    <ContractTermsResultsTable :contract-terms="contractTerms" />
+    <ContractTermsResultsTable
+      :contract-terms="contractTerms"
+      class="data-table"
+    />
+
+    <router-link class="prev-step-button" to="step3">Back</router-link>
   </div>
 </template>
 

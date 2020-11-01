@@ -51,11 +51,10 @@ export default {
   font-size: 12px;
   font-weight: bold;
   width: 100%;
+  max-width: 400px;
 
   &__row {
     display: flex;
-    width: 100%;
-    max-width: 400px;
   }
 
   &__cell {

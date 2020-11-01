@@ -1,7 +1,12 @@
 <template>
   <div class="step-2">
-    <h1>2: Select Pharmacies</h1>
-    <div class="subtitle">for HERE</div>
+    <h1>
+      2: Select Pharmacies
+      <span class="subtitle"
+        >for
+        {{ selectedLegalEntity && selectedLegalEntity.legalEntityName }}</span
+      >
+    </h1>
 
     <SelectTable :columns="columnsSchema">
       <SelectTableRow
@@ -77,7 +82,7 @@ export default {
 
   computed: {
     ...mapState(["selectedPharmaciesIDs"]),
-    ...mapGetters(["pharmaciesForSelectedEntity"]),
+    ...mapGetters(["pharmaciesForSelectedEntity", "selectedLegalEntity"]),
   },
 
   methods: {
@@ -92,6 +97,11 @@ export default {
 </script>
 
 <style lang="scss">
+.subtitle {
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .links {
   &--step2 {
     justify-content: space-between;

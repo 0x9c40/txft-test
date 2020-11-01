@@ -1,7 +1,6 @@
 <template>
   <div class="step-3">
     <h1>3: Enter Contract Terms</h1>
-
     <form class="form">
       <FormGroup label="Contract Type" name="contract-type">
         <CTFormSelect

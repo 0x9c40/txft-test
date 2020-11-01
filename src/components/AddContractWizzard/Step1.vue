@@ -102,6 +102,8 @@ h1 {
   color: white;
   cursor: pointer;
   text-decoration: none;
+  display: block;
+  width: fit-content;
 }
 
 .next-step-button {

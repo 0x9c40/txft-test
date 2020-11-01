@@ -45,7 +45,7 @@ export default new Vuex.Store({
     },
 
     selectedLegalEntity(state) {
-      return state.legalEntities.filter(function matchID(legalEntity) {
+      return state.legalEntities.find(function matchID(legalEntity) {
         return legalEntity.legalEntityID === state.selectedLegalEntityID;
       });
     },

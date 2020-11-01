@@ -2,6 +2,7 @@
   <div class="step-2">
     <h1>2: Select Pharmacies</h1>
     <div class="subtitle">for HERE</div>
+
     <SelectTable :columns="columnsSchema">
       <SelectTableRow
         v-for="entry in pharmaciesForSelectedEntity"
@@ -18,6 +19,7 @@
         />
       </SelectTableRow>
     </SelectTable>
+
     <div class="links links--step2">
       <router-link class="prev-step-button" to="1st-step">Back</router-link>
       <router-link v-slot="{ navigate, href }" to="3rd-step">

@@ -1,6 +1,7 @@
 <template>
   <div class="step-1">
     <h1>1: Select Legal Entity</h1>
+
     <SelectTable :columns="columnsSchema">
       <SelectTableRow
         v-for="entry in legalEntities"
@@ -17,6 +18,7 @@
         />
       </SelectTableRow>
     </SelectTable>
+
     <div class="links">
       <router-link v-slot="{ navigate, href }" to="2nd-step">
         <a

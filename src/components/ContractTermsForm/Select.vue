@@ -9,7 +9,7 @@
       class="select__preview"
       :class="{ 'select__preview--active': optionsOpened }"
     >
-      {{ selectedOption }}
+      {{ selected }}
     </div>
     <div class="select-options-wrapper">
       <div v-show="optionsOpened" class="select-options">
@@ -17,9 +17,9 @@
           v-for="option in options"
           :key="option"
           class="select__option"
-          :class="{ 'select__option--active': option === selectedOption }"
+          :class="{ 'select__option--active': option === selected }"
           tabindex="0"
-          @click="select(option)"
+          @click.stop="select(option)"
           @keyup.enter.stop="select(option)"
         >
           {{ option }}
@@ -30,12 +30,20 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
-
 export default {
   name: "CTFromSelect",
 
-  props: ["selectedOption", "options"],
+  props: {
+    selected: {
+      type: String,
+      required: true,
+    },
+
+    options: {
+      type: Array,
+      required: true,
+    },
+  },
 
   data() {
     return {
@@ -44,14 +52,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(["selectContractType"]),
-
     toggleOptions() {
       this.optionsOpened = !this.optionsOpened;
     },
 
     select(option) {
-      this.selectContractType(option);
+      this.$emit("select", option);
       this.toggleOptions();
     },
   },
@@ -119,6 +125,14 @@ export default {
       background-color: $color-blue;
       color: white;
     }
+
+    &:focus {
+      outline: 1px solid $color-blue;
+    }
+  }
+
+  &:focus {
+    outline: 1px solid $color-blue;
   }
 }
 

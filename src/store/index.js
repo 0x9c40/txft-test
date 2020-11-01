@@ -11,7 +11,7 @@ import { ContractTermsForm } from "./modules/ContractTermsForm";
 export default new Vuex.Store({
   state: {
     legalEntities,
-    selectedLegalEntityID: 1,
+    selectedLegalEntityID: undefined,
     pharmacies,
     selectedPharmaciesIDs: [],
   },

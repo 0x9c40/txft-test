@@ -1,6 +1,8 @@
 <template>
   <div class="add-contract">
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 

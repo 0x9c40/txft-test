@@ -1,6 +1,6 @@
 <template>
-  <td class="select-table-row__cell select-table-cell">
-    <span class="select-table-row__cell--on-mobile">{{ column.name }}:</span>
+  <td class="select-table-cell">
+    <span class="select-table-cell--on-mobile">{{ column.name }}:</span>
     <span>
       {{ concatenate(column.keys, entry) }}
     </span>
@@ -35,5 +35,37 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.select-table-cell {
+  &:nth-child(1) {
+    flex: 1.5;
+  }
+
+  &:nth-child(2) {
+    flex: 2;
+  }
+
+  &:nth-child(3) {
+    flex: 1;
+  }
+
+  &:nth-child(4) {
+    flex: 1;
+  }
+
+  &--on-mobile {
+    display: none;
+    font-weight: bold;
+  }
+
+  @media (max-width: 640px) {
+    padding-bottom: 5px;
+    display: flex;
+
+    &--on-mobile {
+      display: inline;
+      min-width: 100px;
+    }
+  }
+}
 </style>

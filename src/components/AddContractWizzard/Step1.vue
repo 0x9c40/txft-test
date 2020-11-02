@@ -1,5 +1,5 @@
 <template>
-  <div class="step-1">
+  <div>
     <h1>1: Select Legal Entity</h1>
 
     <SelectTable :columns="columnsSchema">
@@ -19,19 +19,11 @@
       </SelectTableRow>
     </SelectTable>
 
-    <div class="links">
-      <router-link v-slot="{ navigate, href }" to="step2">
-        <a
-          class="next-step-button"
-          :class="{
-            'next-step-button--locked': selectedLegalEntityID === undefined,
-          }"
-          @click="goToNextStep(navigate, href)"
-        >
-          Select Pharmacies
-        </a>
-      </router-link>
-    </div>
+    <PrevNextLinks
+      next="step2"
+      :next-step-locked="selectedLegalEntityID === undefined"
+      next-label="Select Pharmacies"
+    />
   </div>
 </template>
 
@@ -40,6 +32,7 @@ import { mapState, mapActions } from "vuex";
 import SelectTable from "../SelectTable/SelectTable.vue";
 import SelectTableRow from "../SelectTable/Row.vue";
 import SelectTableCell from "../SelectTable/Cell.vue";
+import PrevNextLinks from "../AddContractWizzard/PrevNextLinks.vue";
 
 export default {
   name: "Step1",
@@ -48,6 +41,7 @@ export default {
     SelectTable,
     SelectTableRow,
     SelectTableCell,
+    PrevNextLinks,
   },
 
   data() {
@@ -74,56 +68,18 @@ export default {
   },
 
   computed: {
-    ...mapState(["legalEntities", "selectedLegalEntityID"]),
+    ...mapState({
+      legalEntities: (state) => state.AddContractWizzard.legalEntities,
+      selectedLegalEntityID: (state) =>
+        state.AddContractWizzard.selectedLegalEntityID,
+    }),
   },
 
   methods: {
     ...mapActions(["selectLegalEntity"]),
-
-    goToNextStep(navigate, href) {
-      // .next-step-button--locked {pointer-events: none;}
-      navigate(href);
-    },
   },
 };
 </script>
 
-<style lang="scss">
-h1 {
-  margin-bottom: 24px;
-  color: $text-color-black;
-}
-
-@mixin step-button {
-  border-radius: 4px;
-  padding: 8px 24px;
-  font-weight: bold;
-  font-size: 12px;
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
-  width: fit-content;
-}
-
-.next-step-button {
-  @include step-button;
-  background-color: $color-primary-tone;
-
-  &--locked {
-    pointer-events: none;
-    opacity: 0.3;
-  }
-}
-
-.prev-step-button {
-  @include step-button;
-  background-color: $color-grey;
-}
-
-.links {
-  display: flex;
-  justify-content: flex-end;
-  margin: 48px 0px;
-}
+<style>
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div class="step-3">
+  <div>
     <h1>3: Enter Contract Terms</h1>
     <form class="form">
       <FormGroup label="Contract Type" name="contract-type">
-        <CTFormSelect
+        <Select
           :selected="selectedContractType"
           :options="contractTypeOptions"
           @select="select"
@@ -46,26 +46,28 @@
       />
     </form>
 
-    <div class="links links--step2">
-      <router-link class="prev-step-button" to="step2">Back</router-link>
-      <router-link v-slot="{ navigate, href }" to="step4">
-        <a class="next-step-button" @click="goToNextStep(navigate, href)">
-          View Results
-        </a>
-      </router-link>
-    </div>
+    <PrevNextLinks
+      prev="step2"
+      next="step4"
+      next-label="View Results"
+      :go-to-next-step="goToNextStep"
+    />
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
-import CTFormSelect from "../ContractTermsForm/Select.vue";
+import Select from "../ContractTermsForm/Select.vue";
 import FormGroup from "../ContractTermsForm/FormGroup.vue";
+import PrevNextLinks from "../AddContractWizzard/PrevNextLinks.vue";
 
 export default {
+  name: "Step3",
+
   components: {
-    CTFormSelect,
+    Select,
     FormGroup,
+    PrevNextLinks,
   },
 
   data() {
@@ -99,7 +101,7 @@ export default {
         ["Contractor Name", this.contractorName],
       ];
       this.saveAllData(step3DataInTableFormat);
-      // .next-step-button--locked {pointer-events: none;}
+
       navigate(href);
     },
 

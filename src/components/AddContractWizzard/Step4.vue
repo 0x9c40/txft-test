@@ -19,7 +19,7 @@
     <h2>Contract Terms</h2>
     <SimpleTable :table-data="step3Data" class="data-table" />
 
-    <router-link class="prev-step-button" to="step3">Back</router-link>
+    <PrevNextLinks prev="step3" />
   </div>
 </template>
 
@@ -27,6 +27,7 @@
 import { mapState, mapGetters } from "vuex";
 import DataTable from "../SelectTable/DataTable.vue";
 import SimpleTable from "../SimpleTable.vue";
+import PrevNextLinks from "../AddContractWizzard/PrevNextLinks.vue";
 
 export default {
   name: "Step4",
@@ -34,6 +35,7 @@ export default {
   components: {
     DataTable,
     SimpleTable,
+    PrevNextLinks,
   },
 
   data() {

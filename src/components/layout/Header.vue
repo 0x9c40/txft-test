@@ -73,6 +73,7 @@ export default {
   align-items: center;
   font-weight: bold;
   margin-right: 48px;
+  cursor: pointer;
 
   &__icon {
     width: 12px;

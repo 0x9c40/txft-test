@@ -1,11 +1,8 @@
 <template>
-  <div class="step-2">
+  <div>
     <h1>
       2: Select Pharmacies
-      <span class="subtitle"
-        >for
-        {{ selectedLegalEntity && selectedLegalEntity.legalEntityName }}</span
-      >
+      <span class="subtitle">for {{ selectedLegalEntityName }}</span>
     </h1>
 
     <SelectTable :columns="columnsSchema">
@@ -25,20 +22,12 @@
       </SelectTableRow>
     </SelectTable>
 
-    <div class="links links--step2">
-      <router-link class="prev-step-button" to="step1">Back</router-link>
-      <router-link v-slot="{ navigate, href }" to="step3">
-        <a
-          class="next-step-button"
-          :class="{
-            'next-step-button--locked': selectedPharmaciesIDs.length === 0,
-          }"
-          @click="goToNextStep(navigate, href)"
-        >
-          Enter Contract Terms
-        </a>
-      </router-link>
-    </div>
+    <PrevNextLinks
+      prev="step1"
+      next="step3"
+      :next-step-locked="selectedPharmaciesIDs.length === 0"
+      next-label="Enter Contract Terms"
+    />
   </div>
 </template>
 
@@ -47,6 +36,7 @@ import { mapState, mapActions, mapGetters } from "vuex";
 import SelectTable from "../SelectTable/SelectTable.vue";
 import SelectTableRow from "../SelectTable/Row.vue";
 import SelectTableCell from "../SelectTable/Cell.vue";
+import PrevNextLinks from "../AddContractWizzard/PrevNextLinks.vue";
 
 export default {
   name: "Step2",
@@ -55,6 +45,7 @@ export default {
     SelectTable,
     SelectTableRow,
     SelectTableCell,
+    PrevNextLinks,
   },
 
   data() {
@@ -81,17 +72,21 @@ export default {
   },
 
   computed: {
-    ...mapState(["selectedPharmaciesIDs"]),
+    ...mapState({
+      selectedPharmaciesIDs: (state) =>
+        state.AddContractWizzard.selectedPharmaciesIDs,
+    }),
     ...mapGetters(["pharmaciesForSelectedEntity", "selectedLegalEntity"]),
+
+    selectedLegalEntityName() {
+      return (
+        this.selectedLegalEntity && this.selectedLegalEntity.legalEntityName
+      );
+    },
   },
 
   methods: {
     ...mapActions(["selectPharmacy"]),
-
-    goToNextStep(navigate, href) {
-      // .next-step-button--locked {pointer-events: none;}
-      navigate(href);
-    },
   },
 };
 </script>

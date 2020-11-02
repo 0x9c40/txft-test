@@ -38,7 +38,8 @@ module.exports = (env, { mode }) => {
             {
               loader: "sass-loader",
               options: {
-                additionalData: `@import "@/styles/_variables.scss";`,
+                additionalData: `@import "@/styles/_variables.scss";
+                                 @import "@/styles/_mixins.scss";`,
               },
             },
           ],
